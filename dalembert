@@ -1,0 +1,75 @@
+# cording:UTF-8
+
+# Written by kojik0430
+# First Python Program
+
+import random
+
+money_unit = 500
+bet_money  = 500
+balance    = 100000
+win_cnt    = 0
+lose_cnt   = 0
+plus_minus = 0
+
+counter_l = 0
+counter_m = 0
+
+#
+'''
+print('money_unit：'+str(money_unit))
+print('bet_money ：'+str(bet_money))
+print('balance   ：'+str(balance))
+print('win_cnt   ：'+str(win_cnt))
+print('lose_cnt  ：'+str(lose_cnt))
+print('plus_minus：'+str(plus_minus))
+'''
+
+for counter_l in range(0, 11):
+
+    for counter_m in range(0, 6):
+
+        print('----------')
+        print('counter_l  ：' + str(counter_l))
+        print('counter_m  ：' + str(counter_m))
+
+        rand = random.randint(0, 1)
+
+        print('rand      ：' + str(rand))
+
+        if rand == 1:
+            win_cnt += 1
+            plus_minus += bet_money
+            balance += bet_money
+        else:
+            lose_cnt += 1
+            plus_minus -= bet_money
+            balance -= bet_money
+
+        # 負けが多い時のみダランベール発動
+        if win_cnt < lose_cnt:
+            # 勝った場合
+            if rand == 1:
+                # 賭け金が初期単位より大きい場合減らす
+                if bet_money > money_unit:
+                    bet_money -= money_unit
+            else:
+                bet_money += money_unit
+
+        print('bet_money ：'+str(bet_money))
+        print('balance   ：'+str(balance))
+        print('win_cnt   ：'+str(win_cnt))
+        print('lose_cnt  ：'+str(lose_cnt))
+        print('plus_minus：'+str(plus_minus))
+
+
+print('=========================================')
+
+print('counter_l ：' + str(counter_l))
+print('counter_m ：' + str(counter_m))
+print('bet_money ：' + str(bet_money))
+print('balance   ：' + str(balance))
+print('win_cnt   ：' + str(win_cnt))
+print('lose_cnt  ：' + str(lose_cnt))
+print('win_lose  ：' + str(win_cnt - lose_cnt))
+print('plus_minus：' + str(plus_minus))
